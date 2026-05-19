@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Roll Color Dice</title>
@@ -9,12 +10,15 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
+font-family:'Luckiest Guy',cursive;
 }
 
 body{
 background:#6bbcff;
-background-image:url('https://www.transparenttextures.com/patterns/cubes.png');
+background-image:url('Screenshot 2026-05-19 183458.png');
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
 padding:40px;
 color:white;
 }
@@ -70,6 +74,7 @@ flex-wrap:wrap;
 }
 
 .die{
+
 width:160px;
 height:160px;
 border-radius:25px;
@@ -126,6 +131,20 @@ line-height:1.7;
 .blue-text{color:#003cff;}
 .purple-text{color:#b300ff;}
 
+@keyframes spinDice{
+0%{transform:rotate(0deg) scale(0.5);opacity:0;}
+25%{transform:rotate(180deg) scale(1.2);opacity:1;}
+50%{transform:rotate(360deg) scale(0.8);}
+75%{transform:rotate(540deg) scale(1.1);}
+100%{transform:rotate(720deg) scale(1);opacity:1;}
+}
+
+@keyframes pop{
+0%{transform:scale(.5) rotate(-10deg);opacity:0;}
+50%{transform:scale(1.3) rotate(10deg);opacity:1;}
+100%{transform:scale(1) rotate(0deg);opacity:1;}
+}
+
 @media(max-width:1000px){
 .controls{
 grid-template-columns:1fr;
@@ -166,22 +185,48 @@ height:110px;
 <option>COLOR DICE</option>
 </select>
 
-<select>
-<option>BLUE</option>
-<option>RED</option>
-<option>GREEN</option>
-<option>ORANGE</option>
-<option>PURPLE</option>
-<option>YELLOW</option>
+<select id="colorSelect">
+<option value="random">RANDOM COLORS</option>
+<option value="red red red red">ALL RED</option>
+<option value="blue blue blue blue">ALL BLUE</option>
+<option value="green green green green">ALL GREEN</option>
+<option value="yellow yellow yellow yellow">ALL YELLOW</option>
+<option value="purple purple purple purple">ALL PURPLE</option>
+<option value="orange orange orange orange">ALL ORANGE</option>
+<option value="red orange blue purple">NO GREEN</option>
+<option value="red orange green purple">NO BLUE</option>
+<option value="red blue green purple">NO ORANGE</option>
+<option value="orange blue green purple">NO RED</option>
+<option value="red orange blue green">NO PURPLE</option>
+<option value="red orange yellow blue">NO GREEN & PURPLE</option>
 </select>
 </div>
 
-<div class="dice-container">
+<div id="countdown" style="text-align:center;font-size:7rem;font-weight:900;margin-bottom:30px;display:none;color:white;text-shadow:0 6px 0 #2b6cb0;animation:pop 0.5s infinite;">3</div>
+
+<div class="dice-container" id="diceContainer">
 <div class="die red"><div class="dot"></div></div>
 <div class="die green"><div class="dot"></div></div>
 <div class="die orange"><div class="dot"></div></div>
 <div class="die blue"><div class="dot"></div></div>
 </div>
+
+<div style="text-align:center;margin-top:35px;">
+<button onclick="rollDice()" style="background:#ffd400;color:#1d72e8;border:none;padding:18px 45px;font-size:2rem;font-weight:900;border-radius:18px;cursor:pointer;box-shadow:0 6px 15px rgba(0,0,0,0.2);">
+ROLL AGAIN!
+</button>
+</div>
+
+<div style="text-align:center;font-size:2rem;line-height:2;margin-top:25px;">
+<span class="red-text">Red</span>,
+<span class="orange-text">Orange</span>,
+<span class="yellow-text">Yellow</span>,
+<span class="green-text">Green</span>,
+<span class="blue-text">Blue</span>
+and
+<span class="purple-text">Purple</span>.
+</div>
+
 </div>
 
 <div class="box">
@@ -191,18 +236,7 @@ height:110px;
 This website uses virtual dice created with an algorithm that assigns equal probabilities to every possible outcome. By clicking on the 'Roll Again' button you can re-roll all the dice on this page.
 </p>
 
-<div class="colors">
-<p>This page allows you to choose any number of dice between 1 and 100, each having 6 sides and 6 possible colors:</p>
-<p>
-<span class="red-text">Red</span>,
-<span class="orange-text">Orange</span>,
-<span class="yellow-text">Yellow</span>,
-<span class="green-text">Green</span>,
-<span class="blue-text">Blue</span>
-and
-<span class="purple-text">Purple</span>.
-</p>
-</div>
+
 </div>
 
 <div class="box">
@@ -228,5 +262,47 @@ and
 
 </div>
 
+<script>
+const diceColors=['red','green','orange','blue','purple','yellow'];
+
+async function rollDice(){
+const countdown=document.getElementById('countdown');
+countdown.style.display='block';
+
+for(let i=3;i>=1;i--){
+countdown.textContent=i;
+countdown.style.animation='none';
+void countdown.offsetWidth;
+countdown.style.animation='pop 0.5s';
+await new Promise(resolve=>setTimeout(resolve,1000));
+}
+
+countdown.style.display='none';
+const container=document.getElementById('diceContainer');
+const selected=document.getElementById('colorSelect').value;
+container.innerHTML='';
+
+for(let i=0;i<4;i++){
+let randomColor;
+
+if(selected==='random'){
+randomColor=diceColors[Math.floor(Math.random()*diceColors.length)];
+}else{
+const allowedColors=selected.split(' ');
+randomColor=allowedColors[Math.floor(Math.random()*allowedColors.length)];
+}
+
+const die=document.createElement('div');
+die.className=`die ${randomColor}`;
+die.style.animation='spinDice 3s ease';
+
+const dot=document.createElement('div');
+dot.className='dot';
+
+ die.appendChild(dot);
+ container.appendChild(die);
+}
+}
+</script>
 </body>
 </html>
