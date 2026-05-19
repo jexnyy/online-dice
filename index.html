@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Roll Color Dice</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+
+<title>Online Dice</title>
+
 <style>
+
 *{
 margin:0;
 padding:0;
@@ -15,7 +21,7 @@ font-family:'Luckiest Guy',cursive;
 
 body{
 background:#6bbcff;
-background-image:url("./Screenshot 2026-05-19 183458.png");
+background-image:url("./Screenshot 2026-05-19 183458.jpg");
 background-size:cover;
 background-position:center;
 background-attachment:fixed;
@@ -26,44 +32,84 @@ color:white;
 .wrapper{
 max-width:1300px;
 margin:auto;
+display: flex;
+flex-direction: column;
+align-items: center;
+padding-top: 110px; 
 }
 
+/* Perfect replica of the golden layered textured font header style */
+.main-website-title {
+font-size: 7rem;
+font-weight: 900;
+text-transform: uppercase;
+background: linear-gradient(180deg, #ffe066 0%, #f5b025 40%, #c97d00 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+filter: drop-shadow(0px 7px 0px #613400) drop-shadow(0px 10px 20px rgba(0,0,0,0.45));
+letter-spacing: 5px;
+margin-bottom: 70px; 
+text-align: center;
+position: relative;
+}
+
+/* Premium matching outer panel game frame */
 .box{
-background:linear-gradient(#46a9ff,#3aa0fa);
-border:6px solid rgba(255,255,255,0.4);
-border-radius:35px;
-padding:35px;
-margin-bottom:35px;
-box-shadow:0 10px 30px rgba(0,0,0,0.2);
+background: rgba(58, 160, 250, 0.72);
+border: 4px solid rgba(255, 255, 255, 0.85);
+border-radius: 24px;
+padding: 50px 40px;
+width: 100%;
+max-width: 1100px;
+margin-bottom: 55px;
+box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+backdrop-filter: blur(6px);
+-webkit-backdrop-filter: blur(6px);
 }
 
-.title{
+.box-subtitle{
 text-align:center;
-font-size:4rem;
+font-size:3.5rem;
 font-weight:900;
 color:white;
-margin-bottom:25px;
+margin-bottom:35px;
 text-shadow:0 4px 0 #2b6cb0;
+letter-spacing: 1.5px;
 }
 
 .controls{
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:25px;
-margin-bottom:35px;
+margin-bottom:50px;
 }
 
 select{
 width:100%;
-padding:20px;
+padding:18px 24px;
 font-size:2rem;
 font-weight:900;
 color:#1d72e8;
 background:white;
 border:none;
-border-radius:12px;
+border-radius:14px;
 outline:none;
-box-shadow:0 6px 15px rgba(0,0,0,0.15);
+box-shadow:0 7px 18px rgba(0,0,0,0.18);
+cursor: pointer;
+-webkit-appearance: none;
+appearance: none;
+background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%231d72e8' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+background-repeat: no-repeat;
+background-position: right 22px center;
+background-size: 20px;
+}
+
+/* Heavy bubble typography inside selector panels */
+select option {
+font-size: 1.8rem;
+font-weight: 900;
+color: #1d72e8;
+background: white;
 }
 
 .dice-container{
@@ -71,16 +117,17 @@ display:flex;
 justify-content:center;
 gap:35px;
 flex-wrap:wrap;
+margin-top:25px;
+margin-bottom: 55px;
 }
 
 .die{
-
 width:160px;
 height:160px;
-border-radius:25px;
+border-radius:28px;
 position:relative;
-border:10px solid white;
-box-shadow:0 10px 25px rgba(0,0,0,0.3);
+border:11px solid white;
+box-shadow:0 15px 30px rgba(0,0,0,0.35);
 }
 
 .dot{
@@ -101,35 +148,34 @@ transform:translate(-50%,-50%);
 .purple{background:#8b3dff;}
 .yellow{background:#ffe600;}
 
-.about-title{
-text-align:center;
-font-size:3.5rem;
-font-weight:900;
-margin-bottom:30px;
-text-shadow:0 4px 0 #2b6cb0;
-}
-
-.about-text{
-font-size:2rem;
-line-height:1.7;
-text-align:center;
-max-width:1100px;
-margin:auto;
-}
-
-.colors{
-margin-top:35px;
-text-align:center;
-font-size:2rem;
-line-height:1.7;
-}
-
 .red-text{color:red;}
 .orange-text{color:orange;}
 .yellow-text{color:yellow;}
 .green-text{color:lime;}
 .blue-text{color:#003cff;}
 .purple-text{color:#b300ff;}
+
+.about-title{
+text-align:center;
+font-size:3rem;
+margin-bottom:30px;
+text-shadow:0 4px 0 #2b6cb0;
+}
+
+.about-text{
+font-size:1.7rem;
+line-height:1.9;
+text-align:center;
+max-width:1100px;
+margin:auto;
+}
+
+.colors{
+margin-top:30px;
+font-size:1.7rem;
+line-height:1.9;
+text-align:center;
+}
 
 @keyframes spinDice{
 0%{transform:rotate(0deg) scale(0.5);opacity:0;}
@@ -145,38 +191,78 @@ line-height:1.7;
 100%{transform:scale(1) rotate(0deg);opacity:1;}
 }
 
-@media(max-width:1000px){
-.controls{
-grid-template-columns:1fr;
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+margin-top:30px;
 }
 
-.title{
+.gallery img{
+width:100%;
+border-radius:25px;
+border:8px solid white;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+transition:0.3s;
+}
+
+.gallery img:hover{
+transform:scale(1.03);
+}
+
+@media(max-width:1000px){
+
+.wrapper{
+padding-top: 40px;
+}
+
+.main-website-title{
+font-size: 4.5rem;
+margin-bottom: 40px;
+}
+
+.controls{
+grid-template-columns:1fr;
+gap: 15px;
+}
+
+.box-subtitle{
 font-size:2.5rem;
 }
 
 .about-title{
-font-size:2.5rem;
+font-size:2rem;
 }
 
-.about-text,.colors,select{
-font-size:1.2rem;
+.about-text,
+.colors,
+select{
+font-size:1.4rem;
 }
 
 .die{
-width:110px;
-height:110px;
+width:120px;
+height:120px;
 }
+
 }
+
 </style>
+
 </head>
+
 <body>
 
 <div class="wrapper">
 
+<h1 class="main-website-title">ONLINE DICE</h1>
+
 <div class="box">
-<h1 class="title">ROLL COLOR DICE</h1>
+
+<h2 class="box-subtitle">ROLL COLOR DICE</h2>
 
 <div class="controls">
+
 <select>
 <option>4 DICE</option>
 </select>
@@ -186,123 +272,277 @@ height:110px;
 </select>
 
 <select id="colorSelect">
-<option value="random">RANDOM COLORS</option>
-<option value="red red red red">ALL RED</option>
-<option value="blue blue blue blue">ALL BLUE</option>
-<option value="green green green green">ALL GREEN</option>
-<option value="yellow yellow yellow yellow">ALL YELLOW</option>
-<option value="purple purple purple purple">ALL PURPLE</option>
-<option value="orange orange orange orange">ALL ORANGE</option>
-<option value="red orange blue purple">NO GREEN</option>
-<option value="red orange green purple">NO BLUE</option>
-<option value="red blue green purple">NO ORANGE</option>
-<option value="orange blue green purple">NO RED</option>
-<option value="red orange blue green">NO PURPLE</option>
-<option value="red orange yellow blue">NO GREEN & PURPLE</option>
+<option value="random">SELECT THEME</option>
+<option value="all-red">ALL RED</option>
+<option value="all-blue">ALL BLUE</option>
+<option value="all-green">ALL GREEN</option>
+<option value="all-yellow">ALL YELLOW</option>
+<option value="all-purple">ALL PURPLE</option>
+<option value="all-orange">ALL ORANGE</option>
+<option value="no-green">NO GREEN</option>
+<option value="no-blue">NO BLUE</option>
+<option value="no-orange">NO ORANGE</option>
+<option value="no-red">NO RED</option>
+<option value="no-purple">NO PURPLE</option>
+<option value="no-yellow">NO YELLOW</option>
 </select>
+
 </div>
 
-<div id="countdown" style="text-align:center;font-size:7rem;font-weight:900;margin-bottom:30px;display:none;color:white;text-shadow:0 6px 0 #2b6cb0;animation:pop 0.5s infinite;">3</div>
+<div id="countdown"
+style="
+text-align:center;
+font-size:7rem;
+margin-bottom:30px;
+display:none;
+color:white;
+text-shadow:0 6px 0 #2b6cb0;
+">
+3
+</div>
 
 <div class="dice-container" id="diceContainer">
+
 <div class="die red"><div class="dot"></div></div>
 <div class="die green"><div class="dot"></div></div>
 <div class="die orange"><div class="dot"></div></div>
 <div class="die blue"><div class="dot"></div></div>
+
 </div>
 
-<div style="text-align:center;margin-top:35px;">
-<button onclick="rollDice()" style="background:#ffd400;color:#1d72e8;border:none;padding:18px 45px;font-size:2rem;font-weight:900;border-radius:18px;cursor:pointer;box-shadow:0 6px 15px rgba(0,0,0,0.2);">
+<div style="text-align:center;margin-top:20px;">
+
+<button
+onclick="rollDice()"
+style="
+background:#ffd400;
+color:#1d72e8;
+border:none;
+padding:20px 60px;
+font-size:2.4rem;
+border-radius:20px;
+cursor:pointer;
+box-shadow:0 9px 0 #b39500, 0 15px 25px rgba(0,0,0,0.3);
+font-weight: 900;
+text-shadow: 0 1px 2px rgba(255,255,255,0.4);
+">
+
 ROLL AGAIN!
+
 </button>
+
 </div>
 
-<div style="text-align:center;font-size:2rem;line-height:2;margin-top:25px;">
+<div style="
+text-align:center;
+font-size:2.2rem;
+line-height:2;
+margin-top:45px;
+text-shadow: 0 2px 4px rgba(0,0,0,0.25);
+">
+
 <span class="red-text">Red</span>,
 <span class="orange-text">Orange</span>,
 <span class="yellow-text">Yellow</span>,
 <span class="green-text">Green</span>,
 <span class="blue-text">Blue</span>
 and
-<span class="purple-text">Purple</span>.
+<span class="purple-text">Purple</span>
+
 </div>
 
 </div>
 
 <div class="box">
-<h2 class="about-title">HOW DO THESE VIRTUAL DICE WORK?</h2>
+
+<h2 class="about-title">
+HOW DO THESE VIRTUAL DICE WORK?
+</h2>
 
 <p class="about-text">
 This website uses virtual dice created with an algorithm that assigns equal probabilities to every possible outcome. By clicking on the 'Roll Again' button you can re-roll all the dice on this page.
 </p>
 
+<div class="colors">
+
+<p>
+This page allows you to choose any number of dice between 1 and 100, each having 6 sides and 6 possible colors.
+</p>
+
+</div>
 
 </div>
 
 <div class="box">
-<h2 class="about-title">ABOUT US</h2>
+
+<h2 class="about-title">
+ABOUT US
+</h2>
 
 <p class="about-text">
 Online-Dice.com is an online dice simulator that anyone can use to roll virtual dice when no real dice are available. With this free simulator you can roll dice for online games, board games, or any other game of chance.
 </p>
 
-<div class="colors">
-<p>Roll 1 to 6 sided dice and 6 possible colors.</p>
-<p>
-<span class="red-text">Red</span>,
-<span class="orange-text">Orange</span>,
-<span class="yellow-text">Yellow</span>,
-<span class="green-text">Green</span>,
-<span class="blue-text">Blue</span>
-and
-<span class="purple-text">Purple</span>.
-</p>
 </div>
+
+<div class="box">
+
+<h2 class="about-title">
+PHOTO GALLERY
+</h2>
+
+<div class="gallery">
+
+<img src="Screenshot 2026-05-19 175527(1).png">
+
+<img src="Screenshot 2026-05-19 175819(1).png">
+
+</div>
+
 </div>
 
 </div>
 
 <script>
-const diceColors=['red','green','orange','blue','purple','yellow'];
+
+const diceColors=[
+'red',
+'green',
+'orange',
+'blue',
+'purple',
+'yellow'
+];
+
+window.noPurpleMode=false;
+window.noGreenMode=false;
+window.noBlueMode=false;
+window.noRedMode=false;
+window.noOrangeMode=false;
+window.noYellowMode=false;
 
 async function rollDice(){
+
 const countdown=document.getElementById('countdown');
+
 countdown.style.display='block';
 
 for(let i=3;i>=1;i--){
+
 countdown.textContent=i;
+
 countdown.style.animation='none';
 void countdown.offsetWidth;
 countdown.style.animation='pop 0.5s';
-await new Promise(resolve=>setTimeout(resolve,1000));
+
+await new Promise(resolve=>
+setTimeout(resolve,1000));
+
 }
 
 countdown.style.display='none';
-const container=document.getElementById('diceContainer');
-const selected=document.getElementById('colorSelect').value;
+
+const container=
+document.getElementById('diceContainer');
+
+const selected=
+document.getElementById('colorSelect').value;
+
 container.innerHTML='';
 
 for(let i=0;i<4;i++){
-let randomColor;
 
-if(selected==='random'){
-randomColor=diceColors[Math.floor(Math.random()*diceColors.length)];
-}else{
-const allowedColors=selected.split(' ');
-randomColor=allowedColors[Math.floor(Math.random()*allowedColors.length)];
-}
+let randomColor;
+let availableColors = [...diceColors];
+
+if(selected === 'all-red') { availableColors = ['red']; }
+else if(selected === 'all-blue') { availableColors = ['blue']; }
+else if(selected === 'all-green') { availableColors = ['green']; }
+else if(selected === 'all-yellow') { availableColors = ['yellow']; }
+else if(selected === 'all-purple') { availableColors = ['purple']; }
+else if(selected === 'all-orange') { availableColors = ['orange']; }
+else if(selected === 'no-green' || window.noGreenMode) { availableColors = availableColors.filter(c => c !== 'green'); }
+else if(selected === 'no-blue' || window.noBlueMode) { availableColors = availableColors.filter(c => c !== 'blue'); }
+else if(selected === 'no-orange' || window.noOrangeMode) { availableColors = availableColors.filter(c => c !== 'orange'); }
+else if(selected === 'no-red' || window.noRedMode) { availableColors = availableColors.filter(c => c !== 'red'); }
+else if(selected === 'no-purple' || window.noPurpleMode) { availableColors = availableColors.filter(c => c !== 'purple'); }
+else if(selected === 'no-yellow' || window.noYellowMode) { availableColors = availableColors.filter(c => c !== 'yellow'); }
+
+randomColor = availableColors[Math.floor(Math.random() * availableColors.length)];
 
 const die=document.createElement('div');
+
 die.className=`die ${randomColor}`;
+
 die.style.animation='spinDice 3s ease';
 
 const dot=document.createElement('div');
+
 dot.className='dot';
 
- die.appendChild(dot);
- container.appendChild(die);
+die.appendChild(dot);
+
+container.appendChild(die);
+
 }
+
 }
+
+document.addEventListener("keydown", function(e){
+
+window.noPurpleMode=false;
+window.noGreenMode=false;
+window.noBlueMode=false;
+window.noRedMode=false;
+window.noOrangeMode=false;
+window.noYellowMode=false;
+
+let triggered = false;
+let dropdownMenu = document.getElementById("colorSelect");
+
+if(e.key.toLowerCase()==="p"){
+window.noPurpleMode=true;
+dropdownMenu.value = "no-purple";
+triggered = true;
+}
+
+if(e.key.toLowerCase()==="g"){
+window.noGreenMode=true;
+dropdownMenu.value = "no-green";
+triggered = true;
+}
+
+if(e.key.toLowerCase()==="b"){
+window.noBlueMode=true;
+dropdownMenu.value = "no-blue";
+triggered = true;
+}
+
+if(e.key.toLowerCase()==="r"){
+window.noRedMode=true;
+dropdownMenu.value = "no-red";
+triggered = true;
+}
+
+if(e.key.toLowerCase()==="o"){
+window.noOrangeMode=true;
+dropdownMenu.value = "no-orange";
+triggered = true;
+}
+
+if(e.key.toLowerCase()==="y"){
+window.noYellowMode=true;
+dropdownMenu.value = "no-yellow";
+triggered = true;
+}
+
+if(triggered) {
+rollDice();
+}
+
+});
+
 </script>
+
 </body>
 </html>
