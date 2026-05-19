@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roll Color Dice</title>
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#6bbcff;
+background-image:url('https://www.transparenttextures.com/patterns/cubes.png');
+padding:40px;
+color:white;
+}
+
+.wrapper{
+max-width:1300px;
+margin:auto;
+}
+
+.box{
+background:linear-gradient(#46a9ff,#3aa0fa);
+border:6px solid rgba(255,255,255,0.4);
+border-radius:35px;
+padding:35px;
+margin-bottom:35px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.title{
+text-align:center;
+font-size:4rem;
+font-weight:900;
+color:white;
+margin-bottom:25px;
+text-shadow:0 4px 0 #2b6cb0;
+}
+
+.controls{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+margin-bottom:35px;
+}
+
+select{
+width:100%;
+padding:20px;
+font-size:2rem;
+font-weight:900;
+color:#1d72e8;
+background:white;
+border:none;
+border-radius:12px;
+outline:none;
+box-shadow:0 6px 15px rgba(0,0,0,0.15);
+}
+
+.dice-container{
+display:flex;
+justify-content:center;
+gap:35px;
+flex-wrap:wrap;
+}
+
+.die{
+width:160px;
+height:160px;
+border-radius:25px;
+position:relative;
+border:10px solid white;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+.dot{
+width:28px;
+height:28px;
+background:white;
+border-radius:50%;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+}
+
+.red{background:#ff1010;}
+.green{background:#009900;}
+.orange{background:#ffaa00;}
+.blue{background:#1148ff;}
+.purple{background:#8b3dff;}
+.yellow{background:#ffe600;}
+
+.about-title{
+text-align:center;
+font-size:3.5rem;
+font-weight:900;
+margin-bottom:30px;
+text-shadow:0 4px 0 #2b6cb0;
+}
+
+.about-text{
+font-size:2rem;
+line-height:1.7;
+text-align:center;
+max-width:1100px;
+margin:auto;
+}
+
+.colors{
+margin-top:35px;
+text-align:center;
+font-size:2rem;
+line-height:1.7;
+}
+
+.red-text{color:red;}
+.orange-text{color:orange;}
+.yellow-text{color:yellow;}
+.green-text{color:lime;}
+.blue-text{color:#003cff;}
+.purple-text{color:#b300ff;}
+
+@media(max-width:1000px){
+.controls{
+grid-template-columns:1fr;
+}
+
+.title{
+font-size:2.5rem;
+}
+
+.about-title{
+font-size:2.5rem;
+}
+
+.about-text,.colors,select{
+font-size:1.2rem;
+}
+
+.die{
+width:110px;
+height:110px;
+}
+}
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+<div class="box">
+<h1 class="title">ROLL COLOR DICE</h1>
+
+<div class="controls">
+<select>
+<option>4 DICE</option>
+</select>
+
+<select>
+<option>COLOR DICE</option>
+</select>
+
+<select>
+<option>BLUE</option>
+<option>RED</option>
+<option>GREEN</option>
+<option>ORANGE</option>
+<option>PURPLE</option>
+<option>YELLOW</option>
+</select>
+</div>
+
+<div class="dice-container">
+<div class="die red"><div class="dot"></div></div>
+<div class="die green"><div class="dot"></div></div>
+<div class="die orange"><div class="dot"></div></div>
+<div class="die blue"><div class="dot"></div></div>
+</div>
+</div>
+
+<div class="box">
+<h2 class="about-title">HOW DO THESE VIRTUAL DICE WORK?</h2>
+
+<p class="about-text">
+This website uses virtual dice created with an algorithm that assigns equal probabilities to every possible outcome. By clicking on the 'Roll Again' button you can re-roll all the dice on this page.
+</p>
+
+<div class="colors">
+<p>This page allows you to choose any number of dice between 1 and 100, each having 6 sides and 6 possible colors:</p>
+<p>
+<span class="red-text">Red</span>,
+<span class="orange-text">Orange</span>,
+<span class="yellow-text">Yellow</span>,
+<span class="green-text">Green</span>,
+<span class="blue-text">Blue</span>
+and
+<span class="purple-text">Purple</span>.
+</p>
+</div>
+</div>
+
+<div class="box">
+<h2 class="about-title">ABOUT US</h2>
+
+<p class="about-text">
+Online-Dice.com is an online dice simulator that anyone can use to roll virtual dice when no real dice are available. With this free simulator you can roll dice for online games, board games, or any other game of chance.
+</p>
+
+<div class="colors">
+<p>Roll 1 to 6 sided dice and 6 possible colors.</p>
+<p>
+<span class="red-text">Red</span>,
+<span class="orange-text">Orange</span>,
+<span class="yellow-text">Yellow</span>,
+<span class="green-text">Green</span>,
+<span class="blue-text">Blue</span>
+and
+<span class="purple-text">Purple</span>.
+</p>
+</div>
+</div>
+
+</div>
+
+</body>
+</html>
